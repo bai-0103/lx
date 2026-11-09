@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>灵犀一点</title>
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23C9A96E'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%231a2a3a' font-family='serif' font-weight='bold'>灵</text></svg>">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+    color: #EDE6D3;
+    min-height: 100vh;
+    background:
+      linear-gradient(180deg, rgba(8, 18, 32, 0.55) 0%, rgba(8, 18, 32, 0.65) 50%, rgba(8, 18, 32, 0.82) 100%),
+      url("https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/UGj8bUEWkoFiTOx5hOiceQi3nth") center/cover no-repeat fixed;
+    background-color: #0a1626;
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    gap: 0;
+  }
+
+  /* ===== 标题区 ===== */
+  h1 {
+    font-family: "Ma Shan Zheng", "STKaiti", "KaiTi", serif;
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px);
+    letter-spacing: 0.18em;
+    color: #F3ECD8;
+    text-shadow: 0 0 24px rgba(201, 169, 110, 0.35), 0 2px 8px rgba(0,0,0,0.6);
+    line-height: 1.1;
+    padding-left: 0.18em;
+  }
+  .sub {
+    margin-top: 10px;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: rgba(237, 230, 211, 0.7);
+    padding-left: 0.4em;
+  }
+  .divider {
+    margin: 18px 0 26px;
+    display: flex; align-items: center; gap: 14px;
+    color: #C9A96E;
+    opacity: 0.85;
+  }
+  .divider::before, .divider::after {
+    content: "";
+    width: 50px; height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+  }
+
+  /* ===== 宫格入口 ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 560px;
+  }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  }
+  .cell {
+    border: 1px solid rgba(201, 169, 110, 0.35);
+    background: linear-gradient(160deg, rgba(20, 36, 56, 0.55), rgba(10, 22, 38, 0.75));
+    backdrop-filter: blur(6px);
+    border-radius: 8px;
+    cursor: pointer;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cell:hover, .cell:focus-visible {
+    border-color: #C9A96E;
+    background: linear-gradient(160deg, rgba(40, 60, 88, 0.65), rgba(16, 32, 52, 0.85));
+    box-shadow: 0 0 0 1px rgba(201,169,110,0.25) inset;
+    outline: none;
+  }
+  .cell .label {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: #F0E8D2;
+    padding-left: 0.12em;
+  }
+
+  footer {
+    margin-top: 28px;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(237, 230, 211, 0.4);
+  }
+
+  /* ===== 弹窗 ===== */
+  .mask {
+    position: fixed; inset: 0;
+    background: rgba(4, 10, 20, 0.7);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    z-index: 100;
+  }
+  .mask.show { display: flex; }
+  .modal {
+    width: 100%;
+    max-width: 360px;
+    background: linear-gradient(160deg, #14243a, #0a1828);
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    border-radius: 12px;
+    padding: 32px 28px 26px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: pop .25s ease;
+  }
+  @keyframes pop {
+    from { transform: scale(.92); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .modal h3 {
+    font-family: "Ma Shan Zheng", serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: #F3ECD8;
+    letter-spacing: 0.2em;
+    margin-bottom: 14px;
+    padding-left: 0.2em;
+  }
+  .modal p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(237, 230, 211, 0.8);
+    margin-bottom: 20px;
+  }
+  .modal img.qr {
+    width: 220px; height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 8px auto 18px;
+    display: block;
+    border: 1px solid rgba(201,169,110,0.3);
+  }
+  .modal .close {
+    display: inline-block;
+    padding: 8px 28px;
+    border: 1px solid #C9A96E;
+    color: #C9A96E;
+    background: transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .modal .close:hover {
+    background: #C9A96E;
+    color: #0a1626;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>灵犀一点</h1>
+    <div class="sub">心有灵犀，胜友如云</div>
+    <div class="divider">❖</div>
+
+    <div class="grid">
+      <!-- 第一行 -->
+      <a class="cell" href="https://wj.qq.com/s2/28588187/eqm3/" target="_blank" rel="noopener">
+        <div class="label">灵犀问答</div>
+      </a>
+      <div class="cell" data-modal="event-ended">
+        <div class="label">帮派小活动</div>
+      </div>
+      <a class="cell" href="https://wj.qq.com/s2/27807616/e65f/" target="_blank" rel="noopener">
+        <div class="label">预约服务</div>
+      </a>
+      <a class="cell" href="https://www.kdocs.cn/l/ckcY0S4HeGe0" target="_blank" rel="noopener">
+        <div class="label">预约查询</div>
+      </a>
+
+      <!-- 第二行 -->
+      <div class="cell" data-modal="maintaining">
+        <div class="label">积分查询</div>
+      </div>
+      <a class="cell" href="https://weixin.kaayun.com/v/5ba7ebf41e96441f9c1737a9fdc54051" target="_blank" rel="noopener">
+        <div class="label">家庭决策</div>
+      </a>
+      <div class="cell" data-modal="qrcode">
+        <div class="label">联系灵犀</div>
+      </div>
+      <a class="cell" href="https://wj.qq.com/s2/24777094/524d/" target="_blank" rel="noopener">
+        <div class="label">更多信息</div>
+      </a>
+    </div>
+
+    <footer>灵犀一点</footer>
+  </div>
+
+  <!-- 弹窗：活动结束 -->
+  <div class="mask" data-mask="event-ended">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>帮派小活动</h3>
+      <p>本期已结束，敬请期待下一期。</p>
+      <button class="close" data-close>知道了</button>
+    </div>
+  </div>
+
+  <!-- 弹窗：维护中 -->
+  <div class="mask" data-mask="maintaining">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>积分查询</h3>
+      <p>正在维护升级中，暂不可用。</p>
+      <button class="close" data-close>知道了</button>
+    </div>
+  </div>
+
+  <!-- 弹窗：二维码 -->
+  <div class="mask" data-mask="qrcode">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>联系灵犀</h3>
+      <p>微信扫码，与我取得联系</p>
+      <img class="qr" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/J1U8bRHc0oOL8LxGm7ZcfmEnnHb" alt="联系灵犀微信二维码">
+      <button class="close" data-close>关闭</button>
+    </div>
+  </div>
+
+<script>
+  document.querySelectorAll('[data-modal]').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const key = cell.getAttribute('data-modal');
+      const mask = document.querySelector('[data-mask="' + key + '"]');
+      if (mask) mask.classList.add('show');
+    });
+  });
+  document.querySelectorAll('.mask').forEach(mask => {
+    mask.addEventListener('click', (e) => {
+      if (e.target === mask || e.target.closest('[data-close]')) {
+        mask.classList.remove('show');
+      }
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.mask.show').forEach(m => m.classList.remove('show'));
+  });
+</script>
+</body>
+</html>
