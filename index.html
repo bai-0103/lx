@@ -17,7 +17,7 @@
     background:
       linear-gradient(180deg, rgba(8, 18, 32, 0.55) 0%, rgba(8, 18, 32, 0.65) 50%, rgba(8, 18, 32, 0.82) 100%),
       url("https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/UGj8bUEWkoFiTOx5hOiceQi3nth") center/cover no-repeat fixed;
-    background-color: #0a1626;
+background-color: #0a1626;
     overflow-x: hidden;
   }
 
@@ -59,7 +59,7 @@
     content: "";
     width: 50px; height: 1px;
     background: linear-gradient(90deg, transparent, #C9A96E, transparent);
-  }
+}
 
   /* ===== 宫格入口 ===== */
   .grid {
@@ -95,15 +95,32 @@
   .cell .label {
     font-size: 14px;
     letter-spacing: 0.12em;
-    color: #F0E8D2;
+color: #F0E8D2;
     padding-left: 0.12em;
   }
 
   footer {
-    margin-top: 28px;
+    margin-top: 24px;
     font-size: 11px;
     letter-spacing: 0.3em;
     color: rgba(237, 230, 211, 0.4);
+  }
+  .sponsor-btn {
+    margin-top: 14px;
+    padding: 6px 20px;
+    border: 1px solid rgba(201, 169, 110, 0.45);
+    background: rgba(20, 36, 56, 0.5);
+    border-radius: 999px;
+    color: #C9A96E;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .sponsor-btn:hover {
+    background: #C9A96E;
+    color: #0a1626;
   }
 
   /* ===== 弹窗 ===== */
@@ -122,7 +139,7 @@
     max-width: 360px;
     background: linear-gradient(160deg, #14243a, #0a1828);
     border: 1px solid rgba(201, 169, 110, 0.5);
-    border-radius: 12px;
+border-radius: 12px;
     padding: 32px 28px 26px;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
@@ -164,7 +181,7 @@
     border-radius: 999px;
     font-family: inherit;
     font-size: 14px;
-    letter-spacing: 0.2em;
+letter-spacing: 0.2em;
     cursor: pointer;
     transition: all .2s ease;
   }
@@ -182,42 +199,43 @@
 
     <div class="grid">
       <!-- 第一行 -->
-      <a class="cell" href="https://wj.qq.com/s2/28588187/eqm3/" target="_blank" rel="noopener">
+      <a class="cell" href=" " target="_blank" rel="noopener">
         <div class="label">灵犀问答</div>
-      </a>
+      </a >
       <div class="cell" data-modal="event-ended">
         <div class="label">帮派小活动</div>
       </div>
       <a class="cell" href="https://wj.qq.com/s2/27807616/e65f/" target="_blank" rel="noopener">
         <div class="label">预约服务</div>
-      </a>
+      </a >
       <a class="cell" href="https://www.kdocs.cn/l/ckcY0S4HeGe0" target="_blank" rel="noopener">
         <div class="label">预约查询</div>
-      </a>
+      </a >
 
       <!-- 第二行 -->
       <div class="cell" data-modal="maintaining">
         <div class="label">积分查询</div>
       </div>
       <a class="cell" href="https://weixin.kaayun.com/v/5ba7ebf41e96441f9c1737a9fdc54051" target="_blank" rel="noopener">
-        <div class="label">家庭决策</div>
-      </a>
+<div class="label">家庭决策</div>
+      </a >
       <div class="cell" data-modal="qrcode">
         <div class="label">联系灵犀</div>
       </div>
       <a class="cell" href="https://wj.qq.com/s2/24777094/524d/" target="_blank" rel="noopener">
         <div class="label">更多信息</div>
-      </a>
+      </a >
     </div>
 
     <footer>灵犀一点</footer>
+    <button class="sponsor-btn" data-modal="sponsor">赞助灵犀</button>
   </div>
 
   <!-- 弹窗：活动结束 -->
   <div class="mask" data-mask="event-ended">
     <div class="modal" role="dialog" aria-modal="true">
       <h3>帮派小活动</h3>
-      <p>本期已结束，敬请期待下一期。</p>
+      <p>本期已结束，敬请期待下一期。</p >
       <button class="close" data-close>知道了</button>
     </div>
   </div>
@@ -226,7 +244,7 @@
   <div class="mask" data-mask="maintaining">
     <div class="modal" role="dialog" aria-modal="true">
       <h3>积分查询</h3>
-      <p>正在维护升级中，暂不可用。</p>
+      <p>正在维护升级中，暂不可用。</p >
       <button class="close" data-close>知道了</button>
     </div>
   </div>
@@ -234,9 +252,19 @@
   <!-- 弹窗：二维码 -->
   <div class="mask" data-mask="qrcode">
     <div class="modal" role="dialog" aria-modal="true">
-      <h3>联系灵犀</h3>
-      <p>微信扫码，与我取得联系</p>
-      <img class="qr" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/J1U8bRHc0oOL8LxGm7ZcfmEnnHb" alt="联系灵犀微信二维码">
+<h3>联系灵犀</h3>
+      <p>微信扫码，与我取得联系</p >
+      < img class="qr" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/J1U8bRHc0oOL8LxGm7ZcfmEnnHb" alt="联系灵犀微信二维码">
+      <button class="close" data-close>关闭</button>
+    </div>
+  </div>
+
+  <!-- 弹窗：赞助 -->
+  <div class="mask" data-mask="sponsor">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>赞助灵犀</h3>
+      <p>感谢支持</p >
+      < img class="qr" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/AeUYb69Zion45Kx6AKjcxnmanNc" alt="赞助二维码">
       <button class="close" data-close>关闭</button>
     </div>
   </div>
