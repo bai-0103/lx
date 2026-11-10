@@ -73,6 +73,7 @@
     .grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
   }
   .cell {
+    position: relative;
     border: 1px solid rgba(201, 169, 110, 0.35);
     background: linear-gradient(160deg, rgba(20, 36, 56, 0.55), rgba(10, 22, 38, 0.75));
     backdrop-filter: blur(6px);
@@ -86,6 +87,22 @@
     text-decoration: none;
     color: inherit;
   }
+  .cell .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 999px;
+    color: #fff;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .badge.hot { background: #e74c3c; }
+  .badge.new { background: #27ae60; }
+  .badge.tip { background: #f39c12; padding: 2px 7px; font-size: 12px; }
   .cell:hover, .cell:focus-visible {
     border-color: #C9A96E;
     background: linear-gradient(160deg, rgba(40, 60, 88, 0.65), rgba(16, 32, 52, 0.85));
@@ -200,12 +217,14 @@
     <div class="grid">
       <!-- 第一行 -->
       <a class="cell" href="https://wj.qq.com/s2/28588187/eqm3/" target="_blank" rel="noopener">
+        <span class="badge new">NEW</span>
         <div class="label">灵犀问答</div>
       </a>
       <div class="cell" data-modal="event-ended">
         <div class="label">帮派小活动</div>
       </div>
       <a class="cell" href="https://wj.qq.com/s2/27807616/e65f/" target="_blank" rel="noopener">
+        <span class="badge hot">HOT</span>
         <div class="label">预约服务</div>
       </a>
       <a class="cell" href="https://www.kdocs.cn/l/ckcY0S4HeGe0" target="_blank" rel="noopener">
@@ -217,6 +236,7 @@
         <div class="label">积分查询</div>
       </div>
       <a class="cell" href="https://weixin.kaayun.com/v/5ba7ebf41e96441f9c1737a9fdc54051" target="_blank" rel="noopener">
+        <span class="badge tip">!</span>
         <div class="label">家庭决策</div>
       </a>
       <div class="cell" data-modal="qrcode">
